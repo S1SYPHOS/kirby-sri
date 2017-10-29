@@ -1,0 +1,1 @@
+# kirby-sri-hash
