@@ -49,7 +49,7 @@ Kirby's built-in helper functions `css()` and `js()` will now include the `integ
 ### 1. Apache
 If you're using [Apache](http://httpd.apache.org/) as your webserver, add the following lines to your `.htaccess` (right after `RewriteBase`):
 
-```
+```text
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)\.([0-9]{10})\.(js|css)$ $1.$3 [L]
 ```
@@ -57,7 +57,7 @@ RewriteRule ^(.+)\.([0-9]{10})\.(js|css)$ $1.$3 [L]
 ### 2. NGINX
 If you're using [NGINX](https://nginx.org/en/) as your webserver, add the following lines to your virtual host setup:
 
-```
+```text
 location /assets {
   if (!-e $request_filename) {
     rewrite "^/(.+)\.([0-9]{10})\.(js|css)$" /$1.$3 break;
