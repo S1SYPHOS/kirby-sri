@@ -39,7 +39,7 @@ class CSS extends \Kirby\Component\CSS {
     if (file_exists($url)) {
       // generate sri hash for css files
       $cssInput = (new Asset($url))->content();
-      $cssIntegrity = checksum($cssInput);
+      $cssIntegrity = sri_checksum($cssInput);
 
       // add timestamp for cache-busting
       $modified = filemtime($url);
