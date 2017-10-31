@@ -51,7 +51,8 @@ class CSS extends \Kirby\Component\CSS {
     $attr = array(
       'rel'  => 'stylesheet',
       'href' => url($url),
-      'integrity' => $cssIntegrity // inject generated sri hash
+      'integrity' => $cssIntegrity, // inject generated sri hash
+      'crossorigin' => 'anonymous'
     );
 
     if(is_array($media)) {

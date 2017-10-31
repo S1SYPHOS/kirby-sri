@@ -50,7 +50,8 @@ class JS extends \Kirby\Component\JS {
     // build the array of HTML attributes
     $attr = array(
       'src' => url($src),
-      'integrity' => $jsIntegrity // inject generated sri hash
+      'integrity' => $jsIntegrity, // inject generated sri hash
+      'crossorigin' => 'anonymous'
     );
 
     if(is_array($async)) {

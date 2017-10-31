@@ -2,7 +2,7 @@
   "name": "sri-hash",
   "description": "Kirby SRI Hash & Cache-bust Plugin",
   "author": "S1SYPHOS <hello@twobrain.io>",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "kirby-plugin",
   "license": "MIT"
 }

@@ -2,9 +2,7 @@
 This plugin is heavily inspired by the great Kirby plugins [cachebuster](https://github.com/getkirby-plugins/cachebuster-plugin) (by Kirby team members [Bastian Allgeier](https://github.com/bastianallgeier) and [Lukas Bestle](https://github.com/lukasbestle)) as well as [fingerprint](https://github.com/iksi/kirby-fingerprint) (by [Iksi](https://github.com/iksi)).
 
 ## What's SRI?
-TL;DR: I wanted to add Kirby-side [subresource integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) (SRI) for safer CDN usage - check out [these](https://getkirby.com/docs/cookbook/kirby-loves-cdn) [articles](https://www.keycdn.com/support/kirby-cdn-integration/) for starters.
-
-**This is still experimental, and may be deleted at some point.**
+TL;DR: I wanted to add Kirby-side [subresource integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) (SRI) for [safer CDN usage](https://hacks.mozilla.org/2015/09/subresource-integrity-in-firefox-43/). Read more about CDN integration and Kirby in the [docs](https://getkirby.com/docs/cookbook/kirby-loves-cdn)) or over at Kirby's partner [KeyCDN]( [tutorials](https://www.keycdn.com/support/kirby-cdn-integration/).
 
 ## Installation
 Use one of these alternatives in order to use install & use `kirby-sri-hash`:
