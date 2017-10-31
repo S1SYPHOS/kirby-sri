@@ -21,7 +21,7 @@ Use one of the following methods to install & use `kirby-sri`:
 If you know your way around Git, you can download this plugin as a [submodule](https://github.com/blog/2104-working-with-submodules):
 
 ```text
-git submodule add https://github.com/S1SYPHOS/kirby-sri-hash.git site/plugins/kirby-sri-hash
+git submodule add https://github.com/S1SYPHOS/kirby-sri.git site/plugins/kirby-sri
 ```
 
 ### 2. Clone or download
@@ -44,7 +44,7 @@ Kirby's built-in helper functions `css()` and `js()` will now include the `integ
 > [Google Developers](https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content)
 
 ## Cache-busting / Fingerprinting
-[Same old, same old](https://www.keycdn.com/support/what-is-cache-busting/). If anyone comes up with a solution how subresource integrity and cache-busting / fingerprinting could be achieved by different plugins (as they both modify Kirby's built-in helper functions `css()` and `js()`), feel free to open a PR! Otherwise, follow the next steps:
+[Same old, same old](https://www.keycdn.com/support/what-is-cache-busting/). If anyone comes up with a solution how subresource integrity and cache-busting / fingerprinting could be achieved by different plugins (as all of them modify Kirby's built-in helper functions `css()` and `js()`), feel free to open a PR! Otherwise, follow the next steps:
 
 ### 1. Apache
 If you're using [Apache](http://httpd.apache.org/) as your webserver, add the following lines to your `.htaccess` (right after `RewriteBase`):
@@ -68,9 +68,7 @@ location /assets {
 **Note: Subresource integrity & cache-busting are not applied to external URLs!**
 
 ## Credits
-This plugin was inspired by Kirby plugins [cachebuster](https://github.com/getkirby-plugins/cachebuster-plugin) (by Kirby team members [Bastian Allgeier](https://github.com/bastianallgeier) and [Lukas Bestle](https://github.com/lukasbestle)) as well as [fingerprint](https://github.com/iksi/kirby-fingerprint) (by [Iksi](https://github.com/iksi)).
-
-This plugin is licensed under the [MIT License](LICENSE), but **using Kirby in production** requires you to [buy a license](https://getkirby.com/buy). Are you ready for the [next step](https://getkirby.com/next)?
+`kirby-sri` was inspired by Kirby plugins [cachebuster](https://github.com/getkirby-plugins/cachebuster-plugin) (by Kirby team members [Bastian Allgeier](https://github.com/bastianallgeier) and [Lukas Bestle](https://github.com/lukasbestle)) as well as [fingerprint](https://github.com/iksi/kirby-fingerprint) (by [Iksi](https://github.com/iksi)). It is licensed under the [MIT License](LICENSE), but **using Kirby in production** requires you to [buy a license](https://getkirby.com/buy). Are you ready for the [next step](https://getkirby.com/next)?
 
 ## Special Thanks
 I'd like to thank everybody that's making great software - you people are awesome. Also I'm always thankful for feedback and bug reports :)
