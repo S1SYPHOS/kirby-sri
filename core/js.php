@@ -39,7 +39,7 @@ class JS extends \Kirby\Component\JS {
     if (file_exists($src)) {
       // generate sri hash for css files
       $jsInput = (new Asset($src))->content();
-      $jsIntegrity = checksum($jsInput);
+      $jsIntegrity = sri_checksum($jsInput);
 
       // add timestamp for cache-busting
       $modified = filemtime($src);
