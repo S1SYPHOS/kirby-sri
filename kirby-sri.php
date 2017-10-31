@@ -3,7 +3,7 @@
 /**
  * Adding SRI Hash to css & js files and cache-busting them
  *
- * @version 0.1.0
+ * @version 0.3.0
  * @author S1SYPHOS <hello@twobrain.io>
  */
 
