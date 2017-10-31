@@ -11,7 +11,7 @@ if(!c::get('sri-hash')) return;
 
 function sri_checksum($input) {
   $algorithm = c::get('sri-hash.algorithm') ? c::get('sri-hash.algorithm') : 'sha512';
-  $hash = hash('sha512', $input, true);
+  $hash = hash($algorithm, $input, true);
   $hash_base64 = base64_encode($hash);
 
   return "$algorithm-$hash_base64";
