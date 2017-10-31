@@ -4,6 +4,7 @@ namespace S1SYPHOS\SRI;
 
 use Asset;
 use f;
+use c;
 use html;
 
 class JS extends \Kirby\Component\JS {
@@ -38,7 +39,7 @@ class JS extends \Kirby\Component\JS {
     if (file_exists($src)) {
       // generate sri hash for css files
       $jsInput = (new Asset($src))->content();
-      $jsIntegrity = checksum($jsInput);
+      $jsIntegrity = sri_checksum($jsInput);
 
       // add timestamp for cache-busting
       $modified = filemtime($src);
@@ -51,7 +52,7 @@ class JS extends \Kirby\Component\JS {
     $attr = array(
       'src' => url($src),
       'integrity' => $jsIntegrity, // inject generated sri hash
-      'crossorigin' => 'anonymous'
+      'crossorigin' => c::get('sri-hash.use-credentials') ? 'use-credentials' : 'anonymous' // set user-defined 'crossorigin' attribute
     );
 
     if(is_array($async)) {

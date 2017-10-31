@@ -4,6 +4,7 @@ namespace S1SYPHOS\SRI;
 
 use Asset;
 use f;
+use c;
 use html;
 
 class CSS extends \Kirby\Component\CSS {
@@ -38,7 +39,7 @@ class CSS extends \Kirby\Component\CSS {
     if (file_exists($url)) {
       // generate sri hash for css files
       $cssInput = (new Asset($url))->content();
-      $cssIntegrity = checksum($cssInput);
+      $cssIntegrity = sri_checksum($cssInput);
 
       // add timestamp for cache-busting
       $modified = filemtime($url);
@@ -52,7 +53,7 @@ class CSS extends \Kirby\Component\CSS {
       'rel'  => 'stylesheet',
       'href' => url($url),
       'integrity' => $cssIntegrity, // inject generated sri hash
-      'crossorigin' => 'anonymous'
+      'crossorigin' => c::get('sri-hash.use-credentials') ? 'use-credentials' : 'anonymous' // set user-defined 'crossorigin' attribute
     );
 
     if(is_array($media)) {

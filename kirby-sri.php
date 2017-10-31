@@ -3,17 +3,18 @@
 /**
  * Adding SRI Hash to css & js files and cache-busting them
  *
- * @version 0.1.0
+ * @version 0.3.0
  * @author S1SYPHOS <hello@twobrain.io>
  */
 
 if(!c::get('sri-hash')) return;
 
-function checksum($input) {
-  $hash = hash('sha512', $input, true);
+function sri_checksum($input) {
+  $algorithm = c::get('sri-hash.algorithm') ? c::get('sri-hash.algorithm') : 'sha512';
+  $hash = hash($algorithm, $input, true);
   $hash_base64 = base64_encode($hash);
 
-  return "sha512-$hash_base64";
+  return "$algorithm-$hash_base64";
 }
 
 load([
