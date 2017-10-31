@@ -1,23 +1,13 @@
 # kirby-sri
-This plugin generates base64-encoded cryptographic hashes for your css / js files based on their content and adds them to the `integrity` attribute of their corresponding `<link>` or `<script>` elements.
-
-`kirby-sri` also applies [cache-busting / fingerprinting](#cache-busting--fingerprinting).
-
-![screenshot of the kirby-sri plugin](screenshot.png)
+This plugin generates base64-encoded cryptographic hashes for your css / js files based on their content and adds them to the `integrity` attribute of their corresponding `<link>` or `<script>` elements. It also applies [cache-busting / fingerprinting](#cache-busting--fingerprinting).
 
 **Table of contents**
 - [1. What's SRI?](#whats-sri)
-- [2. Installation](#installation)
-  - [a) Git submodule](#git-submodule)
-  - [b) Clone or download](#clone-or-download)
-- [3. Usage](#usage)
-  - [a) Activation](#activation)
-  - [b) Options](#options)
+- [2. Getting started](#getting-started)
+- [3. Configuration](#configuration)
 - [4. Cachebusting / fingerprinting](#cache-busting--fingerprinting)
-  - [a) Apache](#apache)
-  - [b) NGINX](#nginx)
-- [4. Be safe - use protection!](#be-safe---use-protection)
-- [5. Credits / License](#credits--license)
+- [5. Be safe - use protection!](#be-safe---use-protection)
+- [6. Credits / License](#credits--license)
 
 ## What's SRI?
 > Subresource Integrity (SRI) is a security feature that enables browsers to verify that files they fetch (for example, from a CDN) are delivered without unexpected manipulation. It works by allowing you to provide a cryptographic hash that a fetched file must match.
@@ -25,9 +15,11 @@ This plugin generates base64-encoded cryptographic hashes for your css / js file
 
 Enter `kirby-sri`: Kirby-side generated SRI hashes for [safer CDN usage](https://hacks.mozilla.org/2015/09/subresource-integrity-in-firefox-43/). Read more about CDN integration and Kirby in the [docs](https://getkirby.com/docs/cookbook/kirby-loves-cdn)) or over at Kirby's partner [KeyCDN](https://www.keycdn.com/support/kirby-cdn-integration/) to get started.
 
+![screenshot of the kirby-sri plugin](screenshot.png)
+
 **This plugin only provides hash generation.** For usage with CDNs, refer to Kirby's official [`cdn-plugin`](https://github.com/getkirby-plugins/cdn-plugin)!
 
-## Installation
+## Getting started
 Use one of the following methods to install & use `kirby-sri`:
 
 ### Git submodule
@@ -43,24 +35,22 @@ git submodule add https://github.com/S1SYPHOS/kirby-sri.git site/plugins/kirby-s
 1. [Clone](https://github.com/S1SYPHOS/kirby-sri.git) or [download](https://github.com/S1SYPHOS/kirby-sri/archive/master.zip)  this repository.
 2. Unzip / Move the folder to `site/plugins`.
 
-## Usage
-After installing the plugin, you should activate it (if you haven't already, read about [multi-environment setups](https://getkirby.com/docs/developer-guide/configuration/options)) and have a look at its options.
-
-### Activation
+### Activate the plugin
 Activate the plugin with the following line in your `config.php`:
 
 ```text
 c::set('sri-hash', true);
 ```
 
-Kirby's built-in helper functions `css()` and `js()` will now include the `integrity` attribute alongside a matching SRI hash.
+Kirby's built-in helper functions `css()` and `js()` will now include an `integrity` attribute alongside the matching SRI hash. If you want to activate `sri-hash` only on specific domains, read about [multi-environment setups](https://getkirby.com/docs/developer-guide/configuration/options).
 
-### Options
-You may configure `kirby-sri` to suit your needs with the following options:
+## Configuration
+Change `kirby-sri` options to suit your needs:
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `sri-hash.use-credentials` | Boolean | `false` | Sets `crossorigin` attribute to `use-credentials` (default: `anonymous`). |
+| `sri-hash.algorithm` | String | `sha512` | Defines the cryptographic [hash algorithm](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) (currently the allowed prefixes are `sha256`, `sha384` and `sha512`). |
+| `sri-hash.use-credentials` | Boolean | `false` | Sets [crossorigin attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) to `use-credentials` instead of `anonymous`. |
 
 ## Cache-busting / Fingerprinting
 [Same old, same old](https://www.keycdn.com/support/what-is-cache-busting/). If anyone comes up with a solution how subresource integrity and cache-busting / fingerprinting could be achieved by different plugins (as all of them modify Kirby's built-in helper functions `css()` and `js()`), feel free to open a PR! Otherwise, follow the next steps:
