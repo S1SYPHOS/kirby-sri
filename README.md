@@ -1,11 +1,18 @@
-# kirby-sri-hash
-This plugin is heavily inspired by the great Kirby plugins [cachebuster](https://github.com/getkirby-plugins/cachebuster-plugin) (by Kirby team members [Bastian Allgeier](https://github.com/bastianallgeier) and [Lukas Bestle](https://github.com/lukasbestle)) as well as [fingerprint](https://github.com/iksi/kirby-fingerprint) (by [Iksi](https://github.com/iksi)).
+# kirby-sri
+This plugin generates base64-encoded cryptographic hashes for your css / js files based on their content and adds them to the `integrity` attribute of their corresponding `<script>` or `<link>` elements.
+
+`kirby-sri` also applies [cache-busting / fingerprinting](#cache-busting-fingerprinting).
 
 ## What's SRI?
-TL;DR: I wanted to add Kirby-side [subresource integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) (SRI) for [safer CDN usage](https://hacks.mozilla.org/2015/09/subresource-integrity-in-firefox-43/). Read more about CDN integration and Kirby in the [docs](https://getkirby.com/docs/cookbook/kirby-loves-cdn)) or over at Kirby's partner [KeyCDN]( [tutorials](https://www.keycdn.com/support/kirby-cdn-integration/).
+> Subresource Integrity (SRI) is a security feature that enables browsers to verify that files they fetch (for example, from a CDN) are delivered without unexpected manipulation. It works by allowing you to provide a cryptographic hash that a fetched file must match.
+> [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)
+
+Enter `kirby-sri`: Kirby-side generated SRI hashes for [safer CDN usage](https://hacks.mozilla.org/2015/09/subresource-integrity-in-firefox-43/). Read more about CDN integration and Kirby in the [docs](https://getkirby.com/docs/cookbook/kirby-loves-cdn)) or over at Kirby's partner [KeyCDN](https://www.keycdn.com/support/kirby-cdn-integration/) to get started.
+
+**This plugin only provides hash generation. For usage with CDNs, refer to Kirby's official [`cdn-plugin`](https://github.com/getkirby-plugins/cdn-plugin)!**
 
 ## Installation
-Use one of these alternatives in order to use install & use `kirby-sri-hash`:
+Use one of the following methods to install & use `kirby-sri`:
 
 ### 1. Git Submodule
 
@@ -17,7 +24,7 @@ git submodule add https://github.com/S1SYPHOS/kirby-sri-hash.git site/plugins/ki
 
 ### 2. Clone or download
 
-1. [Clone](https://github.com/S1SYPHOS/kirby-sri-hash.git) or [download](https://github.com/S1SYPHOS/kirby-sri-hash/archive/master.zip)  this repository.
+1. [Clone](https://github.com/S1SYPHOS/kirby-sri.git) or [download](https://github.com/S1SYPHOS/kirby-sri/archive/master.zip)  this repository.
 2. Unzip / Move the folder to `site/plugins`.
 
 ### 3. Activate the plugin
@@ -27,16 +34,26 @@ Activate the plugin with the following line in your `config.php`:
 c::set('sri-hash', true);
 ```
 
-#### Apache
-Add the following lines to your `.htaccess` (right after `RewriteBase`):
+Kirby's built-in helper functions `css()` and `js()` will now include the `integrity` attribute alongside a matching SRI hash.
+
+**Always use https:// URLs when loading subresources from a CDN, otherwise they might get blocked:**
+
+> Mixed content occurs when initial HTML is loaded over a secure HTTPS connection, but other resources (such as images, videos, stylesheets, scripts) are loaded over an insecure HTTP connection. This is called mixed content because both HTTP and HTTPS content are being loaded to display the same page, and the initial request was secure over HTTPS. Modern browsers display warnings about this type of content to indicate to the user that this page contains insecure resources.
+> [Google Developers](https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content)
+
+## Cache-busting / Fingerprinting
+[Same old, same old](https://www.keycdn.com/support/what-is-cache-busting/). If anyone comes up with a solution how subresource integrity and cache-busting / fingerprinting could be achieved by different plugins (as they both modify Kirby's built-in helper functions `css()` and `js()`), feel free to open a PR! Otherwise, follow the next steps:
+
+### 1. Apache
+If you're using [Apache](http://httpd.apache.org/) as your webserver, add the following lines to your `.htaccess` (right after `RewriteBase`):
 
 ```
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)\.([0-9]{10})\.(js|css)$ $1.$3 [L]
 ```
 
-#### NGINX
-Add the following lines to your virtual host setup:
+### 2. NGINX
+If you're using [NGINX](https://nginx.org/en/) as your webserver, add the following lines to your virtual host setup:
 
 ```
 location /assets {
@@ -47,6 +64,11 @@ location /assets {
 ```
 
 **Note: Subresource integrity & cache-busting are not applied to external URLs!**
+
+## Credits
+This plugin was inspired by Kirby plugins [cachebuster](https://github.com/getkirby-plugins/cachebuster-plugin) (by Kirby team members [Bastian Allgeier](https://github.com/bastianallgeier) and [Lukas Bestle](https://github.com/lukasbestle)) as well as [fingerprint](https://github.com/iksi/kirby-fingerprint) (by [Iksi](https://github.com/iksi)).
+
+This plugin is licensed under the [MIT License](LICENSE), but **using Kirby in production** requires you to [buy a license](https://getkirby.com/buy). Are you ready for the [next step](https://getkirby.com/next)?
 
 ## Special Thanks
 I'd like to thank everybody that's making great software - you people are awesome. Also I'm always thankful for feedback and bug reports :)
