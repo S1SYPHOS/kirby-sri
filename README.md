@@ -1,7 +1,7 @@
 # kirby-sri
 This plugin generates base64-encoded cryptographic hashes for your css / js files based on their content and adds them to the `integrity` attribute of their corresponding `<script>` or `<link>` elements.
 
-`kirby-sri` also applies [cache-busting / fingerprinting](#cache-busting-fingerprinting).
+`kirby-sri` also applies [cache-busting / fingerprinting](#cache-busting--fingerprinting).
 
 ## What's SRI?
 > Subresource Integrity (SRI) is a security feature that enables browsers to verify that files they fetch (for example, from a CDN) are delivered without unexpected manipulation. It works by allowing you to provide a cryptographic hash that a fetched file must match.
