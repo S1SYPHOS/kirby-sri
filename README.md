@@ -1,4 +1,6 @@
-# kirby-sri
+# Kirby SRI
+[![Release](https://img.shields.io/github/release/S1SYPHOS/kirby-sri.svg?color="brightgreen")](https://github.com/S1SYPHOS/kirby-sri/releases) [![License](https://img.shields.io/github/license/S1SYPHOS/kirby-sri.svg)](https://github.com/S1SYPHOS/kirby-sri/blob/master/LICENSE) [![Issues](https://img.shields.io/github/issues/S1SYPHOS/kirby-sri.svg)](https://github.com/S1SYPHOS/kirby-sri/issues)
+
 This plugin generates base64-encoded cryptographic hashes for your css / js files based on their content and adds them to the `integrity` attribute of their corresponding `<link>` or `<script>` elements. It also applies [cache-busting / fingerprinting](#cache-busting--fingerprinting).
 
 **Table of contents**
