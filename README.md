@@ -41,18 +41,18 @@ git submodule add https://github.com/S1SYPHOS/kirby-sri.git site/plugins/kirby-s
 Activate the plugin with the following line in your `config.php`:
 
 ```text
-c::set('sri-hash', true);
+c::set('plugin.kirby-sri', true);
 ```
 
-Kirby's built-in helper functions `css()` and `js()` will now include an `integrity` attribute alongside the matching SRI hash. If you want to activate `sri-hash` only on specific domains, read about [multi-environment setups](https://getkirby.com/docs/developer-guide/configuration/options).
+Kirby's built-in helper functions `css()` and `js()` will now include an `integrity` attribute alongside the matching SRI hash. If you want to activate `kirby-sri` only on specific domains, read about [multi-environment setups](https://getkirby.com/docs/developer-guide/configuration/options).
 
 ## Configuration
 Change `kirby-sri` options to suit your needs:
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `sri-hash.algorithm` | String | `sha512` | Defines the cryptographic [hash algorithm](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) (currently the allowed prefixes are `sha256`, `sha384` and `sha512`). |
-| `sri-hash.use-credentials` | Boolean | `false` | Sets [crossorigin attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) to `use-credentials` instead of `anonymous`. |
+| `plugin.kirby-sri.algorithm` | String | `sha512` | Defines the cryptographic [hash algorithm](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) (currently the allowed prefixes are `sha256`, `sha384` and `sha512`). |
+| `plugin.kirby-sri.use-credentials` | Boolean | `false` | Sets [crossorigin attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) to `use-credentials` instead of `anonymous`. |
 
 ## Cache-busting / Fingerprinting
 [Same old, same old](https://www.keycdn.com/support/what-is-cache-busting/). If anyone comes up with a solution how subresource integrity and cache-busting / fingerprinting could be achieved by different plugins (as all of them modify Kirby's built-in helper functions `css()` and `js()`), feel free to open a PR! Otherwise, follow the next steps:

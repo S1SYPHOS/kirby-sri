@@ -53,7 +53,7 @@ class CSS extends \Kirby\Component\CSS {
       'rel'  => 'stylesheet',
       'href' => url($url),
       'integrity' => $cssIntegrity, // inject generated sri hash
-      'crossorigin' => c::get('sri-hash.use-credentials') ? 'use-credentials' : 'anonymous' // set user-defined 'crossorigin' attribute
+      'crossorigin' => c::get('plugin.kirby-sri.use-credentials') ? 'use-credentials' : 'anonymous' // set user-defined 'crossorigin' attribute
     );
 
     if(is_array($media)) {

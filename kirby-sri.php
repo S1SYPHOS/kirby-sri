@@ -1,16 +1,18 @@
 <?php
 
 /**
- * Adding SRI Hash to css & js files and cache-busting them
+ * Kirby SRI - Adding SRI Hash to css & js files and cache-busting them
  *
- * @version 0.3.0
- * @author S1SYPHOS <hello@twobrain.io>
+ * @package   Kirby CMS
+ * @author    S1SYPHOS <hello@twobrain.io>
+ * @link      http://twobrain.io
+ * @version   0.4.0
  */
 
-if(!c::get('sri-hash')) return;
+if(!c::get('plugin.kirby-sri')) return;
 
 function sri_checksum($input) {
-  $algorithm = c::get('sri-hash.algorithm') ? c::get('sri-hash.algorithm') : 'sha512';
+  $algorithm = c::get('plugin.kirby-sri.algorithm') ? c::get('plugin.kirby-sri.algorithm') : 'sha512';
   $hash = hash($algorithm, $input, true);
   $hash_base64 = base64_encode($hash);
 
