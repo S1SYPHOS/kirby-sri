@@ -7,6 +7,7 @@
  * @author    S1SYPHOS <hello@twobrain.io>
  * @link      http://twobrain.io
  * @version   0.4.0
+ * @license   MIT
  */
 
 if(!c::get('plugin.kirby-sri')) return;
