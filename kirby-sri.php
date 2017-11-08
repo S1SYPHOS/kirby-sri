@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Kirby SRI - Adding SRI Hash to css & js files and cache-busting them
+ * Kirby SRI - Subresource integrity hashing & cache-busting static assets for Kirby
  *
  * @package   Kirby CMS
  * @author    S1SYPHOS <hello@twobrain.io>
