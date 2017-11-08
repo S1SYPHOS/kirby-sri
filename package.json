@@ -1,6 +1,6 @@
 {
   "name": "kirby-sri",
-  "description": "Adding SRI hashes to css & js files and cache-busting them",
+  "description": "Subresource integrity hashing & cache-busting static assets for Kirby",
   "author": "S1SYPHOS <hello@twobrain.io>",
   "version": "0.4.0",
   "type": "kirby-plugin",
