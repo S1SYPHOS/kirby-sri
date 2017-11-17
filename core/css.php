@@ -4,7 +4,7 @@ namespace S1SYPHOS\SRI;
 
 use Asset;
 use f;
-use c;
+use settings;
 use html;
 
 class CSS extends \Kirby\Component\CSS {
@@ -50,7 +50,7 @@ class CSS extends \Kirby\Component\CSS {
       // build an array of SRI-related attributes
       $cssOptions = array(
         'integrity' => $cssIntegrity, // generated SRI hash
-        'crossorigin' => c::get('plugin.kirby-sri.use-credentials') ? 'use-credentials' : 'anonymous' // user-defined 'crossorigin' attribute
+        'crossorigin' => settings::crossorigin(), // user-defined 'crossorigin' attribute
       );
     }
 

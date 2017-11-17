@@ -12,9 +12,32 @@
 
 if(!c::get('plugin.kirby-sri')) return;
 
+class Settings {
+
+  /**
+   * Returns the default options for `kirby-sri`
+   *
+   * @return array
+   */
+
+  public static function __callStatic($name, $args) {
+    // Set prefix
+    $prefix = 'plugin.kirby-sri.';
+    // Set config names and fallbacks as settings
+    $settings = [
+      'algorithm' => 'sha512', // Cryptographic hash algorithm
+      'crossorigin' => 'anonymous', // CORS settings attribute
+    ];
+    // If config settings exist, return the config with fallback
+    if(isset($settings) && array_key_exists($name, $settings)) {
+      return c::get($prefix . $name, $settings[$name]);
+    }
+  }
+}
+
 // Helper function generating base64-encoded SRI hashes
 function sri_checksum($input) {
-  $algorithm = c::get('plugin.kirby-sri.algorithm') ? c::get('plugin.kirby-sri.algorithm') : 'sha512';
+  $algorithm = settings::algorithm();
   $hash = hash($algorithm, $input, true);
   $hash_base64 = base64_encode($hash);
 

@@ -4,7 +4,6 @@ namespace S1SYPHOS\SRI;
 
 use Asset;
 use f;
-use c;
 use html;
 
 class JS extends \Kirby\Component\JS {
@@ -50,7 +49,7 @@ class JS extends \Kirby\Component\JS {
       // build an array of SRI-related attributes
       $jsOptions = array(
         'integrity' => $jsIntegrity, // generated SRI hash
-        'crossorigin' => c::get('plugin.kirby-sri.use-credentials') ? 'use-credentials' : 'anonymous' // user-defined 'crossorigin' attribute
+        'crossorigin' => settings::crossorigin(), // user-defined 'crossorigin' attribute
       );
     }
 
