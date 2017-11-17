@@ -36,7 +36,7 @@ class CSS extends \Kirby\Component\CSS {
 
     $url = ltrim($url, '/');
 
-    if (file_exists($url)) {
+    if(file_exists($url)) {
       // generate sri hash for css files
       $cssInput = (new Asset($url))->content();
       $cssIntegrity = sri_checksum($cssInput);
@@ -46,15 +46,23 @@ class CSS extends \Kirby\Component\CSS {
       $filename = f::name($url) . '.' . $modified . '.' . f::extension($url);
       $dirname  = f::dirname($url);
       $url = ($dirname === '.') ? $filename : $dirname . '/' . $filename;
+
+      // build an array of SRI-related attributes
+      $cssOptions = array(
+        'integrity' => $cssIntegrity, // generated SRI hash
+        'crossorigin' => c::get('plugin.kirby-sri.use-credentials') ? 'use-credentials' : 'anonymous' // user-defined 'crossorigin' attribute
+      );
     }
 
     // build the array of HTML attributes
     $attr = array(
       'rel'  => 'stylesheet',
-      'href' => url($url),
-      'integrity' => $cssIntegrity, // inject generated sri hash
-      'crossorigin' => c::get('plugin.kirby-sri.use-credentials') ? 'use-credentials' : 'anonymous' // set user-defined 'crossorigin' attribute
+      'href' => url($url)
     );
+
+    if(file_exists($url)) {
+      $attr = array_merge($attr, $cssOptions);
+    }
 
     if(is_array($media)) {
       // merge array with custom options
