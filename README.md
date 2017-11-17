@@ -25,7 +25,6 @@ Enter `kirby-sri`: Kirby-side generated SRI hashes for [safer CDN usage](https:/
 Use one of the following methods to install & use `kirby-sri`:
 
 ### Git submodule
-
 If you know your way around Git, you can download this plugin as a [submodule](https://github.com/blog/2104-working-with-submodules):
 
 ```text
@@ -33,7 +32,6 @@ git submodule add https://github.com/S1SYPHOS/kirby-sri.git site/plugins/kirby-s
 ```
 
 ### Clone or download
-
 1. [Clone](https://github.com/S1SYPHOS/kirby-sri.git) or [download](https://github.com/S1SYPHOS/kirby-sri/archive/master.zip)  this repository.
 2. Unzip / Move the folder to `site/plugins`.
 
@@ -52,7 +50,8 @@ Change `kirby-sri` options to suit your needs:
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `plugin.kirby-sri.algorithm` | String | `sha512` | Defines the cryptographic [hash algorithm](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) (currently the allowed prefixes are `sha256`, `sha384` and `sha512`). |
-| `plugin.kirby-sri.use-credentials` | Boolean | `false` | Sets [crossorigin attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) to `use-credentials` instead of `anonymous`. |
+| `plugin.kirby-sri.crossorigin` | String | `anonymous` | Defines [crossorigin attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes). |
+| `plugin.kirby-sri.fingerprinting` | Boolean | `true` | Optionally enables / disables fingerprinting. |
 
 ## Cache-busting / Fingerprinting
 [Same old, same old](https://www.keycdn.com/support/what-is-cache-busting/). If anyone comes up with a solution how subresource integrity and cache-busting / fingerprinting could be achieved by different plugins (as all of them modify Kirby's built-in helper functions `css()` and `js()`), feel free to open a PR! Otherwise, follow the next steps:
