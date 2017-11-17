@@ -40,11 +40,13 @@ class JS extends \Kirby\Component\JS {
       $jsInput = (new Asset($src))->content();
       $jsIntegrity = sri_checksum($jsInput);
 
-      // add timestamp for cache-busting
-      $modified = filemtime($src);
-      $filename = f::name($src) . '.' . $modified . '.' . f::extension($src);
-      $dirname  = f::dirname($src);
-      $src = ($dirname === '.') ? $filename : $dirname . '/' . $filename;
+      if(settings::fingerprinting()) {
+        // add timestamp for cache-busting
+        $modified = filemtime($src);
+        $filename = f::name($src) . '.' . $modified . '.' . f::extension($src);
+        $dirname  = f::dirname($src);
+        $src = ($dirname === '.') ? $filename : $dirname . '/' . $filename;
+      }
 
       // build an array of SRI-related attributes
       $jsOptions = array(

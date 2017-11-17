@@ -41,11 +41,13 @@ class CSS extends \Kirby\Component\CSS {
       $cssInput = (new Asset($url))->content();
       $cssIntegrity = sri_checksum($cssInput);
 
-      // add timestamp for cache-busting
-      $modified = filemtime($url);
-      $filename = f::name($url) . '.' . $modified . '.' . f::extension($url);
-      $dirname  = f::dirname($url);
-      $url = ($dirname === '.') ? $filename : $dirname . '/' . $filename;
+      if(settings::fingerprinting()) {
+        // add timestamp for cache-busting
+        $modified = filemtime($url);
+        $filename = f::name($url) . '.' . $modified . '.' . f::extension($url);
+        $dirname  = f::dirname($url);
+        $url = ($dirname === '.') ? $filename : $dirname . '/' . $filename;
+      }
 
       // build an array of SRI-related attributes
       $cssOptions = array(

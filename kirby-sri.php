@@ -27,6 +27,7 @@ class Settings {
     $settings = [
       'algorithm' => 'sha512', // Cryptographic hash algorithm
       'crossorigin' => 'anonymous', // CORS settings attribute
+      'fingerprinting'  => true, // Enables / disables fingerprinting
     ];
     // If config settings exist, return the config with fallback
     if(isset($settings) && array_key_exists($name, $settings)) {
