@@ -41,7 +41,7 @@ class CSS extends \Kirby\Component\CSS {
       $cssInput = (new Asset($url))->content();
       $cssIntegrity = sri_checksum($cssInput);
 
-      if(settings::fingerprinting()) {
+      if(\settings::fingerprinting()) {
         // add timestamp for cache-busting
         $modified = filemtime($url);
         $filename = f::name($url) . '.' . $modified . '.' . f::extension($url);
@@ -52,7 +52,7 @@ class CSS extends \Kirby\Component\CSS {
       // build an array of SRI-related attributes
       $cssOptions = array(
         'integrity' => $cssIntegrity, // generated SRI hash
-        'crossorigin' => settings::crossorigin(), // user-defined 'crossorigin' attribute
+        'crossorigin' => \settings::crossorigin(), // user-defined 'crossorigin' attribute
       );
     }
 
