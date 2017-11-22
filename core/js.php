@@ -40,7 +40,7 @@ class JS extends \Kirby\Component\JS {
       $jsInput = (new Asset($src))->content();
       $jsIntegrity = sri_checksum($jsInput);
 
-      if(settings::fingerprinting()) {
+      if(\settings::fingerprinting()) {
         // add timestamp for cache-busting
         $modified = filemtime($src);
         $filename = f::name($src) . '.' . $modified . '.' . f::extension($src);
@@ -51,7 +51,7 @@ class JS extends \Kirby\Component\JS {
       // build an array of SRI-related attributes
       $jsOptions = array(
         'integrity' => $jsIntegrity, // generated SRI hash
-        'crossorigin' => settings::crossorigin(), // user-defined 'crossorigin' attribute
+        'crossorigin' => \settings::crossorigin(), // user-defined 'crossorigin' attribute
       );
     }
 
