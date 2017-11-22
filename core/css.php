@@ -62,7 +62,7 @@ class CSS extends \Kirby\Component\CSS {
       'href' => url($url)
     );
 
-    if(file_exists($url)) {
+    if(isset($cssOptions)) {
       $attr = array_merge($attr, $cssOptions);
     }
 
