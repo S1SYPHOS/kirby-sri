@@ -4,6 +4,7 @@ namespace S1SYPHOS\SRI;
 
 use Asset;
 use f;
+use settings;
 use html;
 
 class JS extends \Kirby\Component\JS {
@@ -58,7 +59,7 @@ class JS extends \Kirby\Component\JS {
     // build the array of HTML attributes
     $attr = array('src' => url($src));
 
-    if(file_exists($src)) {
+    if(isset($jsOptions)) {
       $attr = array_merge($attr, $jsOptions);
     }
 
