@@ -6,39 +6,15 @@
  * @package   Kirby CMS
  * @author    S1SYPHOS <hello@twobrain.io>
  * @link      http://twobrain.io
- * @version   0.5.1
+ * @version   0.6.0
  * @license   MIT
  */
 
 if(!c::get('plugin.kirby-sri')) return;
 
-class Settings {
-
-  /**
-   * Returns the default options for `kirby-sri`
-   *
-   * @return array
-   */
-
-  public static function __callStatic($name, $args) {
-    // Set prefix
-    $prefix = 'plugin.kirby-sri.';
-    // Set config names and fallbacks as settings
-    $settings = [
-      'algorithm' => 'sha512', // Cryptographic hash algorithm
-      'crossorigin' => 'anonymous', // CORS settings attribute
-      'fingerprinting'  => true, // Enables / disables fingerprinting
-    ];
-    // If config settings exist, return the config with fallback
-    if(isset($settings) && array_key_exists($name, $settings)) {
-      return c::get($prefix . $name, $settings[$name]);
-    }
-  }
-}
-
 // Helper function generating base64-encoded SRI hashes
 function sri_checksum($input) {
-  $algorithm = settings::algorithm();
+  $algorithm = c::get('plugin.kirby-sri.algorithm', 'sha512');
   $hash = hash($algorithm, $input, true);
   $hash_base64 = base64_encode($hash);
 
@@ -47,10 +23,10 @@ function sri_checksum($input) {
 
 // Loading core
 load([
-  's1syphos\\sri\\css' => __DIR__ . DS . 'core' . DS . 'css.php',
-  's1syphos\\sri\\js'  => __DIR__ . DS . 'core' . DS . 'js.php'
+  'kirby\\plugins\\sri\\css' => __DIR__ . DS . 'core' . DS . 'css.php',
+  'kirby\\plugins\\sri\\js'  => __DIR__ . DS . 'core' . DS . 'js.php'
 ]);
 
 // Registering with Kirby's extension registry
-kirby()->set('component', 'css', 'S1SYPHOS\\SRI\\CSS');
-kirby()->set('component', 'js',  'S1SYPHOS\\SRI\\JS');
+kirby()->set('component', 'css', 'Kirby\Plugins\\SRI\\CSS');
+kirby()->set('component', 'js',  'Kirby\Plugins\\SRI\\JS');

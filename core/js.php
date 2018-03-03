@@ -1,10 +1,10 @@
 <?php
 
-namespace S1SYPHOS\SRI;
+namespace Kirby\Plugins\SRI;
 
 use Asset;
 use f;
-use settings;
+use c;
 use html;
 
 class JS extends \Kirby\Component\JS {
@@ -41,7 +41,7 @@ class JS extends \Kirby\Component\JS {
       $jsInput = (new Asset($src))->content();
       $jsIntegrity = sri_checksum($jsInput);
 
-      if(settings::fingerprinting()) {
+      if(c::get('fingerprinting')) {
         // add timestamp for cache-busting
         $modified = filemtime($src);
         $filename = f::name($src) . '.' . $modified . '.' . f::extension($src);
@@ -52,7 +52,7 @@ class JS extends \Kirby\Component\JS {
       // build an array of SRI-related attributes
       $jsOptions = array(
         'integrity' => $jsIntegrity, // generated SRI hash
-        'crossorigin' => settings::crossorigin(), // user-defined 'crossorigin' attribute
+        'crossorigin' => c::get('plugin.kirby-sri.crossorigin', 'anonymous'), // user-defined 'crossorigin' attribute
       );
     }
 
