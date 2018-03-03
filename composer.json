@@ -9,5 +9,8 @@
       "homepage": "https://twobrain.io",
       "role": "Project Author"
     }
-  ]
+  ],
+  "require": {
+    "composer/installers": "~1.0"
+  }
 }
