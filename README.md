@@ -31,6 +31,12 @@ If you know your way around Git, you can download this plugin as a [submodule](h
 git submodule add https://github.com/S1SYPHOS/kirby-sri.git site/plugins/kirby-sri
 ```
 
+### Composer
+
+```text
+composer require S1SYPHOS/kirby-sri
+```
+
 ### Clone or download
 1. [Clone](https://github.com/S1SYPHOS/kirby-sri.git) or [download](https://github.com/S1SYPHOS/kirby-sri/archive/master.zip)  this repository.
 2. Unzip / Move the folder to `site/plugins`.
