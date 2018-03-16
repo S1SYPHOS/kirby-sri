@@ -45,7 +45,7 @@ class JS extends \Kirby\Component\JS
             $jsInput = (new Asset($src))->content();
             $jsIntegrity = sri_checksum($jsInput);
 
-            if (c::get('fingerprinting')) {
+            if (c::get('plugin.kirby-sri.fingerprinting', true)) {
                 // add timestamp for cache-busting
                 $modified = filemtime($src);
                 $filename = f::name($src) . '.' . $modified . '.' . f::extension($src);

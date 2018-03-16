@@ -45,7 +45,7 @@ class CSS extends \Kirby\Component\CSS
             $cssInput = (new Asset($url))->content();
             $cssIntegrity = sri_checksum($cssInput);
 
-            if (c::get('fingerprinting')) {
+            if (c::get('plugin.kirby-sri.fingerprinting', true)) {
                 // add timestamp for cache-busting
                 $modified = filemtime($url);
                 $filename = f::name($url) . '.' . $modified . '.' . f::extension($url);
