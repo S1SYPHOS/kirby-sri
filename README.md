@@ -42,6 +42,8 @@ composer require S1SYPHOS/kirby-sri
 1. [Clone](https://github.com/S1SYPHOS/kirby-sri.git) or [download](https://github.com/S1SYPHOS/kirby-sri/archive/master.zip)  this repository.
 2. Unzip / Move the folder to `site/plugins`.
 
+Make sure the folder name is `kirby-sri`.
+
 ### Activate the plugin
 Activate the plugin with the following line in your `config.php`:
 
